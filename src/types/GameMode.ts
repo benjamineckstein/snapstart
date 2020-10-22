@@ -4,4 +4,4 @@ export enum GameMode {
     GroupMode,
     Assessment,
     Lookup
-}
+} 

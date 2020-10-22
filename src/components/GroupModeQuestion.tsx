@@ -12,7 +12,7 @@ type MyProps = {
 };
 type MyState = {
     currentQuestion: Question
-    currentPlayer: Player|null
+    currentPlayer: Player | null
 };
 
 class GroupModeQuestion extends React.Component<MyProps, MyState> {
@@ -22,8 +22,8 @@ class GroupModeQuestion extends React.Component<MyProps, MyState> {
         currentPlayer: null
     }
 
-    evaluateQuestion = (points:number) => {
-        this.props.onAddPointsToPlayer(this.state.currentPlayer?.id,points);
+    evaluateQuestion = (points: number): void => {
+        this.props.onAddPointsToPlayer(this.state.currentPlayer?.id, points);
 
         let currentPlayer = this.pickRandomPlayer();
         this.setState({
@@ -32,7 +32,7 @@ class GroupModeQuestion extends React.Component<MyProps, MyState> {
         })
     }
 
-    onStartGame = () => {
+    onStartGame = (): void => {
 
         this.props.onStartGame();
 
@@ -49,24 +49,24 @@ class GroupModeQuestion extends React.Component<MyProps, MyState> {
     }
 
     render() {
-        if(this.props.hasGameStarted){
+        if (this.props.hasGameStarted) {
             return (
                 <div className={"question"}>
                     <div className="thePlayer">
-                    {this.state.currentPlayer?.name} ({this.state.currentPlayer?.level})
+                        {this.state.currentPlayer?.name} ({this.state.currentPlayer?.level})
                     </div>
                     <span className="theQuestion">
                     {this.state.currentQuestion.question}
-                    <span>{this.state.currentQuestion.topic}</span>
+                        <span>{this.state.currentQuestion.topic}</span>
                     <span>Level: {playerLevelToString(this.state.currentQuestion.level)}</span>
                     </span>
                     <div className="questionEvaluate">
                         <h3>Evaluate</h3>
-                    <button onClick={() => this.evaluateQuestion(1)}>1</button>
-                    <button onClick={() => this.evaluateQuestion(2)}>2</button>
-                    <button onClick={() => this.evaluateQuestion(3)}>3</button>
-                    <button onClick={() => this.evaluateQuestion(4)}>4</button>
-                    <button onClick={() => this.evaluateQuestion(5)}>5</button>
+                        <button onClick={() => this.evaluateQuestion(1)}>1</button>
+                        <button onClick={() => this.evaluateQuestion(2)}>2</button>
+                        <button onClick={() => this.evaluateQuestion(3)}>3</button>
+                        <button onClick={() => this.evaluateQuestion(4)}>4</button>
+                        <button onClick={() => this.evaluateQuestion(5)}>5</button>
                     </div>
                 </div>
             );
@@ -75,10 +75,12 @@ class GroupModeQuestion extends React.Component<MyProps, MyState> {
         return (
             <div className={"question"}>
                 <div></div>
-                    <span className="theQuestion">
+                <span className="theQuestion">
                 Welcome to the group game. {this.props.players.length} players are on board.
                     </span>
-                <button  className="btnStartGame" disabled={this.props.players.length <= 0}  onClick={this.onStartGame}>Start game</button>
+                <button className="btnStartGame" disabled={this.props.players.length <= 0}
+                        onClick={this.onStartGame}>Start game
+                </button>
             </div>
         );
     }
