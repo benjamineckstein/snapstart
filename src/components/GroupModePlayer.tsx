@@ -1,5 +1,6 @@
 import React from 'react';
 import {Player} from "../types/Player";
+import {playerLevelToString} from "../types/PlayerLevel";
 
 type MyProps = {
     player: Player
@@ -16,7 +17,7 @@ class GroupModePlayer extends React.Component<MyProps, MyState> {
                     {this.props.player.name}
                 </div>
                 <div>
-                    {this.props.player.level}
+                    {playerLevelToString(this.props.player.level)}
                 </div>
                 <div style={{textAlign: "right"}}>
                     {this.props.player.points}

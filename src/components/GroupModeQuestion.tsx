@@ -1,6 +1,7 @@
 import React from 'react';
 import Questions, {Question} from "../types/Questions";
 import {Player} from "../types/Player";
+import {playerLevelToString} from "../types/PlayerLevel";
 
 type MyProps = {
     hasGameStarted: boolean,
@@ -35,9 +36,10 @@ class GroupModeQuestion extends React.Component<MyProps, MyState> {
 
         this.props.onStartGame();
 
+        let currentPlayer = this.pickRandomPlayer();
         this.setState({
-            currentQuestion: new Questions().getRandomQuestion(),
-            currentPlayer: this.pickRandomPlayer()
+            currentQuestion: new Questions().getRandomQuestionLimitedByLevel(currentPlayer.level),
+            currentPlayer: currentPlayer
         })
 
     }
@@ -56,7 +58,7 @@ class GroupModeQuestion extends React.Component<MyProps, MyState> {
                     <span className="theQuestion">
                     {this.state.currentQuestion.question}
                     <span>{this.state.currentQuestion.topic}</span>
-                    <span>Level: {this.state.currentQuestion.level}</span>
+                    <span>Level: {playerLevelToString(this.state.currentQuestion.level)}</span>
                     </span>
                     <div className="questionEvaluate">
                         <h3>Evaluate</h3>

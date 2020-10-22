@@ -1,4 +1,5 @@
 import React from 'react';
+import {PlayerLevel, playerLevelFromString, playerLevelToString} from "../types/PlayerLevel";
 
 type MyProps = {
     hasGameStarted: boolean,
@@ -14,48 +15,50 @@ type MyState = {
 
 class GroupModeAddPlayer extends React.Component<MyProps, MyState> {
 
-    constructor(props : MyProps) {
+    constructor(props: MyProps) {
         super(props);
-        this.state = {playerName: '', playerLevel:'Junior'};
+        this.state = {playerName: '', playerLevel: PlayerLevel.JUNIOR + ""};
     }
 
-    handleChangeName = (event: React.FormEvent<HTMLInputElement>)  => {
+    handleChangeName = (event: React.FormEvent<HTMLInputElement>) => {
         this.setState({playerName: event.currentTarget.value});
     }
 
     handleChangeLevel = (event: React.FormEvent<HTMLSelectElement>) => {
-        this.setState({playerLevel: event.currentTarget.value});
+
+        let selectValue = event.currentTarget.value;
+        this.setState({playerLevel: selectValue});
     }
 
     handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        if(!this.state.playerName){
+        if (!this.state.playerName) {
             return;
         }
-        this.props.onAddPlayer(this.state.playerName, this.state.playerLevel);
+        let playerLevelKey: number = parseInt(this.state.playerLevel);
+        let playerLevel: PlayerLevel = playerLevelFromString(playerLevelKey);
+        this.props.onAddPlayer(this.state.playerName, playerLevel);
 
         this.setState({playerName: ""});
     }
 
     render() {
-        if(this.props.hasGameStarted){
+        if (this.props.hasGameStarted) {
             return (<div/>);
         }
         return (
             <div className="addPlayer">
-            <form onSubmit={this.handleSubmit}>
-                    <input type="text" placeholder="Playername" value={this.state.playerName} onChange={this.handleChangeName} />
+                <form style={{display: "grid", gridTemplateColumns: "4fr 2fr 1fr"}} onSubmit={this.handleSubmit}>
+                    <input style={{fontSize: 24}} type="text" placeholder="Playername" value={this.state.playerName}
+                           onChange={this.handleChangeName}/>
 
-                    <select value={this.state.playerLevel} onChange={this.handleChangeLevel} >
-                        <option value="Junior">Junior</option>
-                        <option value="Middle">Middle</option>
-                        <option value="Senior">Senior</option>
-                        <option value="Principal">Principal</option>
-                        <option value="Distinguished">Distinguished</option>
+                    <select style={{fontSize: 24}} value={this.state.playerLevel} onChange={this.handleChangeLevel}>
+                        {[PlayerLevel.JUNIOR, PlayerLevel.MIDDLE, PlayerLevel.SENIOR, PlayerLevel.PRINCIPLE, PlayerLevel.DISTINGUISHED].map(level =>
+                            <option value={level}>{playerLevelToString(level)}</option>)}
                     </select>
 
-                <input type="submit" value="Add Player" />
-            </form>
+                    <input style={{fontSize: 24}} type="submit" value="Add"/>
+                </form>
             </div>
         );
     }

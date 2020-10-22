@@ -2,6 +2,7 @@ import React from 'react';
 import GroupModeQuestion from "./GroupModeQuestion";
 import GroupModeLeaderboard from "./GroupModeLeaderboard";
 import {Player} from "../types/Player";
+import {PlayerLevel} from "../types/PlayerLevel";
 
 type MyProps = {
     onResetGameMode: any
@@ -26,7 +27,7 @@ class GroupMode extends React.Component<MyProps, MyState> {
         }
     }
 
-    onAddPlayer = (playerName: string, playerLevel: string) => {
+    onAddPlayer = (playerName: string, playerLevel: PlayerLevel) => {
 
         let player2Id = this.state.playerIdSequence + 1;
 
