@@ -1,13 +1,118 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1,h2,h3 {
+    margin: 0;
+    padding: 0;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.groupmode {
+    margin: 20px;
+    height: 100vh;
+    display: grid;
+    grid-row-gap: 10px;
+    grid-column-gap: 30px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: min-content 50px 1fr;
+    grid-template-areas: "header header" "questionHeader leaderboardHeader" "question leaderboard";
+}
+
+.groupmode .header {
+    grid-area: header;
+}
+
+.groupmode .question {
+    grid-area: question;
+    grid-gap: 10px;
+    grid-template-rows: 1fr 3fr 1fr;
+    display: grid;
+}
+
+.groupmode .question .btnStartGame{
+    font-size: 24px;
+    width: 80%;
+    align-self: baseline;
+    justify-self: center;
+}
+
+.groupmode .question .thePlayer {
+    justify-self: center;
+    font-weight: bold;
+}
+
+.groupmode .question .theQuestion {
+    text-align: center;
+    display: block;
+    font-size: 25px;
+}
+
+.groupmode .question .questionEvaluate button {
+    padding: 10px 20px;
+}
+
+.groupmode .question .theQuestion span {
+
+    display: block;
+    font-size: 60%;
+    color: #777;
+}
+
+.groupmode .leaderboard {
+    grid-area: leaderboard;
+    min-width: 200px;
+
+    grid-gap: 10px;
+    grid-template-rows: 4fr 1fr;
+    display: grid;
+}
+
+.groupmode .leaderboard .playerList {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat( auto-fill, 20px);
+    grid-row-gap: 3px;
+}
+
+.groupmode .leaderboard .playerList .playerListItem {
+
+    border-bottom: 1px dotted #777777;
+    display: grid;
+    grid-gap: 3px;
+    grid-template-columns: 2fr 1fr 30px;
+}
+
+.groupmode .question .questionEvaluate {
+    text-align: center;
+}
+
+.mainmenu {
+    margin: 20px;
+    height: 100vh;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr;
+}
+
+.mainmenu h1 {
+    grid-column: 1/4;
+    align-self: end;
+    justify-self: center;
+}
+
+.mainmenu button {
+    height: 110px;
+    font-size: 25px;
+    width: 100%;
 }
