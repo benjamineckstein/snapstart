@@ -3,28 +3,23 @@ import {Player} from '../types/Player';
 import {playerLevelToString} from '../types/PlayerLevel';
 
 type MyProps = {
-    player: Player
+  player: Player
 };
-type MyState = {};
 
-class GroupModePlayer extends React.Component<MyProps, MyState> {
-
-
-  render() { 
-    return (
-      <div className="playerListItem">
-        <div>
-          {this.props.player.name}
-        </div>
-        <div>
-          {playerLevelToString(this.props.player.level)}
-        </div>
-        <div style={{textAlign: 'right'}}>
-          {this.props.player.points}
-        </div>
+function GroupModePlayer(props: MyProps): JSX.Element {
+  return (
+    <div className="playerListItem">
+      <div>
+        {props.player.name}
       </div>
-    );
-  }
+      <div>
+        {playerLevelToString(props.player.level)}
+      </div>
+      <div style={{textAlign: 'right'}}>
+        {props.player.points}
+      </div>
+    </div>
+  );
 }
 
 export default GroupModePlayer;

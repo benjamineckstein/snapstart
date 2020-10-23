@@ -23,7 +23,7 @@ class GroupModeLeaderboard extends React.Component<MyProps, MyState> {
       });
     }
  
-    render() {
+    render():JSX.Element {
       return (
         <div className={'leaderboard'}>
           <div className="playerList">

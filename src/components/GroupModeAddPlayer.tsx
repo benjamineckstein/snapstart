@@ -20,17 +20,17 @@ class GroupModeAddPlayer extends React.Component<MyProps, MyState> {
     this.state = {playerName: '', playerLevel: PlayerLevel.JUNIOR + ''};
   }
 
-    handleChangeName = (event: React.FormEvent<HTMLInputElement>) => {
+    handleChangeName = (event: React.FormEvent<HTMLInputElement>): void => {
       this.setState({playerName: event.currentTarget.value});
     }
 
-    handleChangeLevel = (event: React.FormEvent<HTMLSelectElement>) => {
+    handleChangeLevel = (event: React.FormEvent<HTMLSelectElement>): void => {
 
       let selectValue = event.currentTarget.value;
       this.setState({playerLevel: selectValue});
     }
 
-    handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    handleSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
       event.preventDefault();
       if (!this.state.playerName) {
         return;
@@ -42,7 +42,7 @@ class GroupModeAddPlayer extends React.Component<MyProps, MyState> {
       this.setState({playerName: ''});
     }
 
-    render() {
+    render(): JSX.Element {
       if (this.props.hasGameStarted) {
         return (<div/>);
       }

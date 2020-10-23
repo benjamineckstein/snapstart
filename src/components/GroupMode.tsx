@@ -21,13 +21,13 @@ class GroupMode extends React.Component<MyProps, MyState> {
       players: []
     };
 
-    onStartGame = () => {
+    onStartGame = ():void => {
       if (this.state.players.length > 0) {
         this.setState({hasGameStarted: true})
       }
     }
  
-    onAddPlayer = (playerName: string, playerLevel: PlayerLevel) => {
+    onAddPlayer = (playerName: string, playerLevel: PlayerLevel):void => {
 
       let player2Id = this.state.playerIdSequence + 1;
 
@@ -40,7 +40,7 @@ class GroupMode extends React.Component<MyProps, MyState> {
       });
     }
 
-    onAddPointsToPlayer = (playerId: number, pointsToAdd: number) => {
+    onAddPointsToPlayer = (playerId: number, pointsToAdd: number):void => {
 
       let player = this.state.players.find(player => player.id === playerId);
       if (!player) {
@@ -58,7 +58,7 @@ class GroupMode extends React.Component<MyProps, MyState> {
 
     }
 
-    render() {
+    render():JSX.Element {
       return (
         <div className={'groupmode'}>
           <div className={'header'}>
