@@ -18,7 +18,7 @@ class GroupMode extends React.Component<MyProps, MyState> {
 
   onStartGame = (): void => {
     if (this.state.playersContextValue.players.hasPlayers()) {
-      this.setState((state,props) => ({hasGameStarted: true}));
+      this.setState((state, props) => ({hasGameStarted: true}));
     }
   }
 
@@ -26,7 +26,7 @@ class GroupMode extends React.Component<MyProps, MyState> {
     console.log('Update Players Context');
     console.log(this.state.playersContextValue.players);
     console.log(players);
-    this.setState((state,props) => ({
+    this.setState((state, props) => ({
       playersContextValue: {players: players, updatePlayers: this.updatePlayers}
     }))
   }
@@ -50,11 +50,13 @@ class GroupMode extends React.Component<MyProps, MyState> {
           <div className={'header'}>
             <button onClick={this.props.onResetGameMode}>Back</button>
           </div>
-          <h1 style={{gridArea: 'questionHeader'}}>Questions</h1>
+          <h1 style={{gridArea: 'questionHeader'}}>{this.state.hasGameStarted && 'Questions'}</h1>
           {!this.state.hasGameStarted && <GroupModeStartGame onStartGame={this.onStartGame}/>}
           {this.state.hasGameStarted && <GroupModeQuestion/>}
-          <h1
-            style={{gridArea: 'leaderboardHeader'}}>{!this.state.hasGameStarted && 'Players'}{this.state.hasGameStarted && 'Leaderboard'}</h1>
+          <h1 style={{gridArea: 'leaderboardHeader'}}>
+            {!this.state.hasGameStarted && 'Players'}
+            {this.state.hasGameStarted && 'Leaderboard'}
+          </h1>
           <GroupModeLeaderboard hasGameStarted={this.state.hasGameStarted}/>
         </div>
       </PlayersContext.Provider>

@@ -55,6 +55,13 @@ export const topic_questions = [
   [8, 0, 'What is TDD?'],
   [8, 0, 'Can you explain the testing pyramid?'],
   [8, 1, 'What are TestContainers?'],
+  [8, 1, 'What is the difference between unit and integration tests?'],
+  [8, 1, 'What are mocks and when to use them?'],
+  [8, 1, 'What is the difference between JUnit 4 and 5?'],
+  [8, 1, 'What are parameterized tests?'],
+  [8, 1, 'What is the purpose of testing software?'],
+  [8, 2, 'What is a @Testfactory in JUnit 5?'],
+  [8, 3, 'What is a @Testfactory in JUnit 5?'],
 
   //9 Frontend Development
   //10 Agile Methods

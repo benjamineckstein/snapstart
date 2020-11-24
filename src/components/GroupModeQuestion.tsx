@@ -74,10 +74,12 @@ class GroupModeQuestion extends React.Component<MyProps, MyState> {
     return (
       <div className={'question'}>
         <div className="thePlayer">
-          {currentPlayer.name} {playerLevelToString(currentPlayer.level)}
+          <span className="thePlayerName">{currentPlayer.name}</span>
+          <span className="thePlayerLevel">{playerLevelToString(currentPlayer.level)}</span>
         </div>
         <span className="theTopicChoosing">
           Please choose a topic
+          <span>{this.state.questions.getRemainingQuestions()} questions remaining.</span>
         </span>
         <div className="theTopicList">
           <h3>Topics</h3>
@@ -93,11 +95,12 @@ class GroupModeQuestion extends React.Component<MyProps, MyState> {
     return (
       <div className={'question'}>
         <div className="thePlayer">
-          {currentPlayer.name} {playerLevelToString(currentPlayer.level)}
+          <span className="thePlayerName">{currentPlayer.name}</span>
+          <span className="thePlayerLevel">{playerLevelToString(currentPlayer.level)}</span>
         </div>
         <span className="theQuestion">
           {this.state.questions.selectedQuestion.question}
-          <span>{GroupModeQuestion.topicData.topicIdToTopicName(this.state.questions.selectedQuestion.topic_id).name}</span>
+          <span>Topic: {GroupModeQuestion.topicData.topicIdToTopicName(this.state.questions.selectedQuestion.topic_id).name}</span>
           <span>Level: {playerLevelToString(this.state.questions.selectedQuestion.level_id)}</span>
         </span>
         <div className="questionEvaluate">

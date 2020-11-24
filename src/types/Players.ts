@@ -25,6 +25,14 @@ export class Players {
     return playersClone;
   }
 
+  removePlayer = (playerId:number):Players => {
+
+    let playersClone = this.clone();
+    let findIndexOf = playersClone.players.findIndex(p => p.id === playerId);
+    playersClone.players.splice(findIndexOf,1);
+    return playersClone;
+  }
+
   pickRandomNextPlayer = (): Players => {
     let playersClone = this.clone();
     if(playersClone.playersThisRound.length <= 1){

@@ -47,15 +47,31 @@ code {
 }
 
 .groupmode .question .thePlayer {
+    font-size: 25px;
     justify-self: center;
     align-self: center;
-    font-weight: bold;
 }
+
+.groupmode .question .thePlayer .thePlayerName{
+}
+
+.groupmode .question .thePlayer .thePlayerLevel{
+    display: block;
+    text-align: center;
+    font-size: 60%;
+    color: #777;
+}
+
+
 
 .groupmode .question .theTopicChoosing {
     text-align: center;
     display: block;
     font-size: 25px;
+}
+.groupmode .question .theTopicChoosing span{
+    font-size: 60%;
+    display: block;
 }
 .groupmode .question .theTopicList {
     text-align: center;
@@ -84,6 +100,8 @@ code {
 }
 .groupmode .question .questionEvaluate button {
     padding: 10px 20px;
+    height: 70px;
+    font-size: 25px;
 }
 
 
@@ -96,13 +114,16 @@ code {
     display: grid;
 }
 
-.groupmode .leaderboard .playerList {
+.groupmode .leaderboard .leaderboardList,
+.groupmode .leaderboard .playerList
+{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat( auto-fill, 20px);
     grid-row-gap: 3px;
 }
 
+.groupmode .leaderboard .leaderboardList .playerListItem,
 .groupmode .leaderboard .playerList .playerListItem {
 
     border-bottom: 1px dotted #777777;
@@ -110,6 +131,17 @@ code {
     grid-gap: 3px;
     grid-template-columns: 2fr 1fr 30px;
 }
+
+.groupmode .leaderboard .playerList .playerListItem:hover{
+    cursor: pointer;
+    background-color: #eeeeee;
+}
+
+.groupmode .leaderboard .leaderboardList .playerListItemSelected {
+    background-color: #e6ffe4;
+    font-weight: bold;
+}
+
 
 
 .mainmenu {
