@@ -23,19 +23,7 @@ class GroupModeLeaderboard extends React.Component<MyProps, MyState> {
   }
 
   render(): JSX.Element {
-
     return this.props.hasGameStarted ? this.renderLeaderBoard(): this.renderPlayers();
-    let currentPlayerId = this.context.players.getSelectedPlayer().id;
-    return (
-      <div className={'leaderboard'}>
-        <div className="playerList">
-          {this.getSortedPlayers().map(player => {
-            return (<GroupModePlayer key={player.id} isSelected={player.id === currentPlayerId} player={player}/>);
-          })}
-        </div>
-        <GroupModeAddPlayer hasGameStarted={this.props.hasGameStarted}/>
-      </div>
-    );
   }
   renderPlayers(): JSX.Element {
     let context = this.context;
