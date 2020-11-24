@@ -1,9 +1,9 @@
 import React from 'react';
 import {PlayerLevel, playerLevelFromString, playerLevelToString} from '../types/PlayerLevel';
+import {PlayersContext} from '../contexts/PlayersContext';
 
 type MyProps = {
-    hasGameStarted: boolean,
-    onAddPlayer: any
+    hasGameStarted: boolean
 
 };
 type MyState = {
@@ -14,6 +14,8 @@ type MyState = {
 };
 
 class GroupModeAddPlayer extends React.Component<MyProps, MyState> {
+
+  static contextType = PlayersContext;
 
   constructor(props: MyProps) {
     super(props);
@@ -37,8 +39,7 @@ class GroupModeAddPlayer extends React.Component<MyProps, MyState> {
       }
       let playerLevelKey: number = parseInt(this.state.playerLevel);
       let playerLevel: PlayerLevel = playerLevelFromString(playerLevelKey);
-      this.props.onAddPlayer(this.state.playerName, playerLevel);
-
+      this.context.updatePlayers(this.context.players.createNewPlayer(this.state.playerName, playerLevel))
       this.setState({playerName: ''});
     }
 
@@ -54,7 +55,7 @@ class GroupModeAddPlayer extends React.Component<MyProps, MyState> {
 
             <select style={{fontSize: 24}} value={this.state.playerLevel} onChange={this.handleChangeLevel}>
               {[PlayerLevel.JUNIOR, PlayerLevel.MIDDLE, PlayerLevel.SENIOR, PlayerLevel.PRINCIPLE, PlayerLevel.DISTINGUISHED].map(level =>
-                <option value={level}>{playerLevelToString(level)}</option>)}
+                <option key={level} value={level}>{playerLevelToString(level)}</option>)}
             </select>
 
             <input style={{fontSize: 24}} type="submit" value="Add"/>

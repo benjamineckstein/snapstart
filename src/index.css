@@ -52,22 +52,40 @@ code {
     font-weight: bold;
 }
 
+.groupmode .question .theTopicChoosing {
+    text-align: center;
+    display: block;
+    font-size: 25px;
+}
+.groupmode .question .theTopicList {
+    text-align: center;
+}
+.groupmode .question .theTopicList button {
+    padding: 10px 20px;
+    font-size: 15px;
+    width: 33%;
+    height: 70px;
+    vertical-align: top;
+}
+
 .groupmode .question .theQuestion {
     text-align: center;
     display: block;
     font-size: 25px;
 }
-
-.groupmode .question .questionEvaluate button {
-    padding: 10px 20px;
-}
-
 .groupmode .question .theQuestion span {
-
     display: block;
     font-size: 60%;
     color: #777;
 }
+
+.groupmode .question .questionEvaluate {
+    text-align: center;
+}
+.groupmode .question .questionEvaluate button {
+    padding: 10px 20px;
+}
+
 
 .groupmode .leaderboard {
     grid-area: leaderboard;
@@ -93,9 +111,6 @@ code {
     grid-template-columns: 2fr 1fr 30px;
 }
 
-.groupmode .question .questionEvaluate {
-    text-align: center;
-}
 
 .mainmenu {
     margin: 20px;

@@ -1,37 +1,89 @@
-import {PlayerLevel} from './PlayerLevel';
+import {shuffle, uniq, clone} from 'lodash';
+import {topic_questions} from '../data/data_questions';
 
-const myQuestions = [
-  {topic: 'CI / CD and Provisioning', level: PlayerLevel.JUNIOR, question: 'What is a pipeline?'},
-  {topic: 'Database', level: PlayerLevel.JUNIOR, question: 'Can you explain the n+1 problem?'},
-  {topic: 'Testing & Test Automation', level: PlayerLevel.JUNIOR, question: 'Can you explain the testing pyramid?'},
-  {topic: 'Testing & Test Automation', level: PlayerLevel.JUNIOR, question: 'What is TDD?'},
-  {topic: 'Testing & Test Automation', level: PlayerLevel.MIDDLE, question: 'What are TestContainers?'},
-  {topic: 'CI / CD and Provisioning', level: PlayerLevel.MIDDLE, question: 'What is the difference between Jenkins and Travis?'}
-]
 
-export interface Question {
-    topic: string
-    level: PlayerLevel
-    question: string
+export interface IQuestion {
+  topic_id: number,
+  level_id: number,
+  question: string
 }
- 
-class Questions {
 
-  getRandomQuestion():Question {
-    return myQuestions[Math.floor(Math.random() * myQuestions.length)]
+
+export class Questions {
+
+  questions: IQuestion[];
+
+  selectedQuestion: IQuestion;
+
+
+  constructor(questions: IQuestion[]) {
+    this.questions = questions;
+    this.selectedQuestion = questions[0];
   }
 
-  getRandomQuestionLimitedByLevel(level: PlayerLevel):Question {
-    let possibleQuestions = myQuestions.filter(question => {
-      return question.level === level
-    })
-    if (possibleQuestions.length === 0) {
-      return {level: level, topic: '', question: 'No questions available for this level'};
+  getAvailableTopics = (level: number): number[] => {
+    let iQuestions = this.questions.filter(q => q.level_id === level);
+    if(iQuestions.length === 0){
+      iQuestions = this.questions.filter(q => q.level_id < level);
     }
-    return possibleQuestions[Math.floor(Math.random() * possibleQuestions.length)]
+    if(iQuestions.length === 0){
+      iQuestions = this.questions;
+    }
+    return shuffle(uniq(iQuestions.map(question => question.topic_id))).slice(0, 3).sort();
   }
 
-}
+  getSelectedQuestion = ():IQuestion => {
+    return this.selectedQuestion;
+  }
 
-export default Questions;
+  getRemainingQuestions = () => {
+    return this.questions.length;
+  }
+
+  selectNextQuestion = (level:number, topic_id:number): Questions => {
+
+    let clone = this.clone();
+    if(clone.questions.length === 0) {
+      clone = Questions.createInstance();
+    }
+    let findIndex = clone.questions.findIndex(q => q.topic_id === topic_id && q.level_id === level);
+    if(findIndex === -1){
+      findIndex = clone.questions.findIndex(q => q.topic_id === topic_id && q.level_id < level);
+    }
+    if(findIndex === -1){
+      console.warn('No suitable question was found!');
+      findIndex = 0;
+    }
+    clone.selectedQuestion = clone.questions[findIndex];
+    clone.questions.splice(findIndex,1);
+
+    return clone;
+
+  }
+
+  clone = ():Questions => {
+    //TODO not so easy to clone class instances with methods
+    let questionsClone = new Questions(clone(this.questions));
+    questionsClone.selectedQuestion = clone(this.selectedQuestion);
+    return questionsClone;
+  }
+
+  public static createInstance(): Questions {
+    let cloneQuestions = clone(topic_questions);
+
+    console.log('Create Questions Instance');
+    console.log(cloneQuestions);
+
+    let questions: IQuestion[] = cloneQuestions.map((data: any) => {
+      return {
+        topic_id: data[0],
+        level_id: data[1],
+        question: data[2]
+      }
+    }
+    );
+
+    return new Questions(questions);
+  }
+}
 

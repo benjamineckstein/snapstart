@@ -1,80 +1,65 @@
 import React from 'react';
 import GroupModeQuestion from './GroupModeQuestion';
 import GroupModeLeaderboard from './GroupModeLeaderboard';
-import {Player} from '../types/Player';
-import {PlayerLevel} from '../types/PlayerLevel';
+import {Players} from '../types/Players';
+import {PlayersContext, PlayersContextValue} from '../contexts/PlayersContext';
+import GroupModeStartGame from './GroupModeStartGame';
 
 type MyProps = {
-    onResetGameMode: any
+  onResetGameMode: any
 };
 type MyState = {
 
-    hasGameStarted: boolean,
-    playerIdSequence: number,
-    players: Player[]
+  playersContextValue: PlayersContextValue
+  hasGameStarted: boolean,
 };
 
 class GroupMode extends React.Component<MyProps, MyState> {
-    state: MyState = {
+
+  onStartGame = (): void => {
+    if (this.state.playersContextValue.players.hasPlayers()) {
+      this.setState((state,props) => ({hasGameStarted: true}));
+    }
+  }
+
+  updatePlayers = (players: Players): void => {
+    console.log('Update Players Context');
+    console.log(this.state.playersContextValue.players);
+    console.log(players);
+    this.setState((state,props) => ({
+      playersContextValue: {players: players, updatePlayers: this.updatePlayers}
+    }))
+  }
+
+  constructor(props: MyProps) {
+    super(props);
+    this.state = {
       hasGameStarted: false,
-      playerIdSequence: 1,
-      players: []
-    };
-
-    onStartGame = ():void => {
-      if (this.state.players.length > 0) {
-        this.setState({hasGameStarted: true})
+      playersContextValue: {
+        players: new Players(),
+        updatePlayers: this.updatePlayers
       }
     }
- 
-    onAddPlayer = (playerName: string, playerLevel: PlayerLevel):void => {
+  }
 
-      let player2Id = this.state.playerIdSequence + 1;
-
-
-      let player2: Player = {id: player2Id, name: playerName, level: playerLevel, points: 0}
-      let players2 = this.state.players.concat(player2);
-      this.setState({
-        playerIdSequence: player2Id,
-        players: players2
-      });
-    }
-
-    onAddPointsToPlayer = (playerId: number, pointsToAdd: number):void => {
-
-      let player = this.state.players.find(player => player.id === playerId);
-      if (!player) {
-        return;
-      }
-      let playerIndex = this.state.players.indexOf(player);
-      let playersCopy = this.state.players.slice();
-      playersCopy[playerIndex].points += pointsToAdd;
-
-      this.setState({
-        players: playersCopy
-
-      })
-
-
-    }
-
-    render():JSX.Element {
-      return (
+  render(): JSX.Element {
+    console.log('Render GroupMode');
+    return (
+      <PlayersContext.Provider value={this.state.playersContextValue}>
         <div className={'groupmode'}>
           <div className={'header'}>
             <button onClick={this.props.onResetGameMode}>Back</button>
           </div>
           <h1 style={{gridArea: 'questionHeader'}}>Questions</h1>
-          <GroupModeQuestion hasGameStarted={this.state.hasGameStarted} players={this.state.players} onAddPointsToPlayer={this.onAddPointsToPlayer}
-            onStartGame={this.onStartGame}/>
-          <h1 style={{gridArea: 'leaderboardHeader'}}>{!this.state.hasGameStarted && 'Players'}{this.state.hasGameStarted && 'Leaderboard'}</h1>
-          <GroupModeLeaderboard hasGameStarted={this.state.hasGameStarted} players={this.state.players}
-            onAddPlayer={this.onAddPlayer}/>
-
-
+          {!this.state.hasGameStarted && <GroupModeStartGame onStartGame={this.onStartGame}/>}
+          {this.state.hasGameStarted && <GroupModeQuestion/>}
+          <h1
+            style={{gridArea: 'leaderboardHeader'}}>{!this.state.hasGameStarted && 'Players'}{this.state.hasGameStarted && 'Leaderboard'}</h1>
+          <GroupModeLeaderboard hasGameStarted={this.state.hasGameStarted}/>
         </div>
-      );
-    }
+      </PlayersContext.Provider>
+    );
+  }
 }
 
 export default GroupMode;
