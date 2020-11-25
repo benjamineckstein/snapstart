@@ -35,6 +35,7 @@ export const topic_questions = [
   [3, 0, 'What is a foreign key?'],
   [3, 0, 'Is a primary key always an integer?'],
   [3, 1, 'What is a transaction?'],
+  [3, 1, 'What is a deadlock?'],
   [3, 1, 'Why do you need auto_increment?'],
   [3, 1, 'Why does an index increase performance?'],
   [3, 1, 'What is a rollback and why does this happen?'],
@@ -109,6 +110,11 @@ export const topic_questions = [
   [8, 3, 'What are the benefits of mutation testing?'],
 
   //9 Frontend Development
+  [9, 0, 'What is a frontend?'],
+  [9, 0, 'What is serverside rendering?'],
+  [9, 0, 'What are popuplar frontend frameworks?'],
+  [9, 0, 'What is the relation between HTML, CSS and JS?'],
+
   //10 Agile Methods
   [10, 0, 'What is Scrum?'],
   [10, 0, 'What is the agile manifesto?'],
@@ -139,6 +145,8 @@ export const topic_questions = [
   //12 Documentation
   [12, 0, 'What is overcommenting?'],
   [12, 1, 'What is Spring REST docs?'],
+  [12, 1, 'Why document anything at all?'],
+  [12, 1, 'When is extensive documentation required?'],
   [12, 2, 'What is documentation automation?'],
 
   //13 Java DI based frameworks
@@ -148,17 +156,23 @@ export const topic_questions = [
   [13, 1, 'What is @Autowired?'],
   [13, 1, 'What is dependency injection?'],
   [13, 1, 'What is MVC?'],
+  [13, 1, 'How does spring proxy mechanic work?'],
+  [13, 1, 'How does spring context cashing work and what are the benefits if used correctly?'],
   //14 Performance
   [14, 0, 'What is a bottleneck?'],
+  [14, 0, 'What is a load test?'],
+  [14, 1, 'What are typical symptoms, when a system is under a lot of load?'],
 
   //15 Security
   [15, 0, 'What is OWASP?'],
   [15, 1, 'What is XSS?'],
+  [15, 1, 'What is one way / two way encryption?'],
   [15, 1, 'Why are passwords stored only as a hash?'],
   [15, 1, 'Why is it a bad idea to store passwords as md5 hashes?'],
   [15, 1, 'How does an SQL injection attack work? How to prevent this?'],
   [15, 1, 'What is the OWASP top 10?'],
   [15, 1, 'What is a pentest?'],
+
   //16 Mobile App Development
   //30 everything else
 ];

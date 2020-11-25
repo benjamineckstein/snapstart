@@ -1,18 +1,18 @@
 // eslint-disable-next-line
 import React from 'react';
 import {GameMode} from '../types/GameMode';
+import {Link} from 'react-router-dom';
 
 type MyProps = {
-    onChangeGameMode: any
 };
 
 function MainMenu(props: MyProps): JSX.Element {
   return (
     <div className="mainmenu">
       <h1>Choose a game mode</h1>
-      <button onClick={():void => props.onChangeGameMode(GameMode.GroupMode)}>Group</button>
-      <button onClick={():void => props.onChangeGameMode(GameMode.Assessment)}>Assessment</button>
-      <button onClick={():void => props.onChangeGameMode(GameMode.Lookup)}>Lookup</button>
+      <Link to="/groupmode">Group Mode</Link>
+      <Link to="/assessment">Assessment</Link>
+      <Link to="/lookup">Lookup</Link>
     </div>
   );
 }

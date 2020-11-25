@@ -4,9 +4,9 @@ import GroupModeLeaderboard from './GroupModeLeaderboard';
 import {Players} from '../types/Players';
 import {PlayersContext, PlayersContextValue} from '../contexts/PlayersContext';
 import GroupModeStartGame from './GroupModeStartGame';
+import {Link} from 'react-router-dom';
 
 type MyProps = {
-  onResetGameMode: any
 };
 type MyState = {
 
@@ -48,7 +48,7 @@ class GroupMode extends React.Component<MyProps, MyState> {
       <PlayersContext.Provider value={this.state.playersContextValue}>
         <div className={'groupmode'}>
           <div className={'header'}>
-            <button onClick={this.props.onResetGameMode}>Back</button>
+            <Link to={'/'}>Back</Link>
           </div>
           <h1 style={{gridArea: 'questionHeader'}}>{this.state.hasGameStarted && 'Questions'}</h1>
           {!this.state.hasGameStarted && <GroupModeStartGame onStartGame={this.onStartGame}/>}
