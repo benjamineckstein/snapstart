@@ -1,6 +1,5 @@
 // eslint-disable-next-line
 import React from 'react';
-import {GameMode} from '../types/GameMode';
 import {Link} from 'react-router-dom';
 
 type MyProps = {
