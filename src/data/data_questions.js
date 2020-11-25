@@ -6,6 +6,7 @@ export const topic_questions = [
   [1, 0, 'What is a 12-factor app?'],
   [1, 1, 'What is docker?'],
   [1, 1, 'What is kubernetes?'],
+  [1, 1, 'What is a kubernetes pod?'],
   [1, 1, 'Can you explain 3 of the 12-factor app?'],
   [1, 2, 'What is the difference between docker and kubernetes?'],
   [1, 2, 'Can you enlist 6 of the 12-factor app?'],
@@ -136,9 +137,28 @@ export const topic_questions = [
   [11, 2, 'What is pair programming? What are the pros and contras?'],
 
   //12 Documentation
+  [12, 0, 'What is overcommenting?'],
+  [12, 1, 'What is Spring REST docs?'],
+  [12, 2, 'What is documentation automation?'],
+
   //13 Java DI based frameworks
+  [13, 0, 'What is JPA?'],
+  [13, 0, 'What is CRUD?'],
+  [13, 1, 'What is @PreAuthorize?'],
+  [13, 1, 'What is @Autowired?'],
+  [13, 1, 'What is dependency injection?'],
+  [13, 1, 'What is MVC?'],
   //14 Performance
+  [14, 0, 'What is a bottleneck?'],
+
   //15 Security
+  [15, 0, 'What is OWASP?'],
+  [15, 1, 'What is XSS?'],
+  [15, 1, 'Why are passwords stored only as a hash?'],
+  [15, 1, 'Why is it a bad idea to store passwords as md5 hashes?'],
+  [15, 1, 'How does an SQL injection attack work? How to prevent this?'],
+  [15, 1, 'What is the OWASP top 10?'],
+  [15, 1, 'What is a pentest?'],
   //16 Mobile App Development
   //30 everything else
 ];
