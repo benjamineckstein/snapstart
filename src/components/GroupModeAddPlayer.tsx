@@ -1,6 +1,11 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import {PlayerLevel, playerLevelFromString, playerLevelToString} from '../types/PlayerLevel';
 import {PlayersContext} from '../contexts/PlayersContext';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import Select from '@material-ui/core/Select';
+import {MenuItem} from '@material-ui/core';
+
 
 type MyProps = {
     hasGameStarted: boolean
@@ -22,13 +27,13 @@ class GroupModeAddPlayer extends React.Component<MyProps, MyState> {
     this.state = {playerName: '', playerLevel: PlayerLevel.JUNIOR + ''};
   }
 
-    handleChangeName = (event: React.FormEvent<HTMLInputElement>): void => {
-      this.setState({playerName: event.currentTarget.value});
+    handleChangeName = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+      this.setState({playerName: event.currentTarget.value!});
     }
 
-    handleChangeLevel = (event: React.FormEvent<HTMLSelectElement>): void => {
+    handleChangeLevel = (event: any): void => {
 
-      let selectValue = event.currentTarget.value;
+      let selectValue = event.target.value;
       this.setState({playerLevel: selectValue});
     }
 
@@ -50,15 +55,15 @@ class GroupModeAddPlayer extends React.Component<MyProps, MyState> {
       return (
         <div className="addPlayer">
           <form style={{display: 'grid', gridTemplateColumns: '4fr 2fr 1fr'}} onSubmit={this.handleSubmit}>
-            <input style={{fontSize: 24}} type="text" placeholder="Playername" value={this.state.playerName}
+            <Input type="text" placeholder="Playername" value={this.state.playerName}
               onChange={this.handleChangeName}/>
 
-            <select style={{fontSize: 24}} value={this.state.playerLevel} onChange={this.handleChangeLevel}>
+            <Select value={this.state.playerLevel} onChange={this.handleChangeLevel}>
               {[PlayerLevel.JUNIOR, PlayerLevel.MIDDLE, PlayerLevel.SENIOR, PlayerLevel.PRINCIPLE, PlayerLevel.DISTINGUISHED].map(level =>
-                <option key={level} value={level}>{playerLevelToString(level)}</option>)}
-            </select>
+                <MenuItem key={level} value={level}>{playerLevelToString(level)}</MenuItem>)}
+            </Select>
 
-            <input style={{fontSize: 24}} type="submit" value="Add"/>
+            <Button variant="outlined" color="primary" type="submit" >Add</Button>
           </form>
         </div>
       );

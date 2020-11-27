@@ -1,5 +1,6 @@
 export const topic_questions = [
   //topic ID, level (0-4), question
+
   //1 cloud
   [1, 0, 'What is a cloud provider?'],
   [1, 0, 'What is a virtual machine?'],
@@ -15,6 +16,7 @@ export const topic_questions = [
   [1, 2, 'What is a serverless function?'],
   [1, 3, 'Can you enlist all 12 of the 12-factor app?'],
   [1, 4, 'Can you enlist all 12 of the 12-factor app and describe them briefly?'],
+
   //2 ci/cd
   [2, 0, 'What is a pipeline?'],
   [2, 0, 'What could be a reason that a pipeline fails?'],
@@ -27,6 +29,7 @@ export const topic_questions = [
   [2, 1, 'What is the difference between Jenkins and Travis?'],
   [2, 2, 'What is the advantage of using terraform?'],
   [2, 3, 'How can you test your terraform configuration?'],
+
   //3 database
   [3, 0, 'Can you explain the n+1 problem?'],
   [3, 0, 'What is an index?'],
@@ -78,7 +81,6 @@ export const topic_questions = [
   [6, 1, 'What is Gatling?'],
   [6, 1, 'What is Prometheus?'],
   [6, 2, 'What is the difference between git and svn?'],
-
 
   //7 APIs and Protocols
   [7, 0, 'What is HTTP mean and stand for?'],

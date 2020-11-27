@@ -7,12 +7,14 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
+import {CssBaseline} from '@material-ui/core';
 
 type MyProps = {};
 
 function App(props:MyProps): JSX.Element {
   return (
     <Router>
+      <CssBaseline />
       <div>
         <Switch>
           <Route path="/groupmode">

@@ -1,5 +1,6 @@
 import React from 'react';
 import {PlayersContext, PlayersContextValue} from '../contexts/PlayersContext';
+import {Button} from '@material-ui/core';
 
 type MyProps = {
   onStartGame: any
@@ -14,11 +15,11 @@ function GroupModeStartGame(props: MyProps): JSX.Element {
           <span className="theQuestion">
                 Welcome to the group game. {contextValue.players.getPlayers().length} players are on board.
           </span>
-          <button className="btnStartGame" disabled={!contextValue.players.hasPlayers()}
+          <Button variant="contained" color="primary" className="btnStartGame" disabled={!contextValue.players.hasPlayers()}
             onClick={(): void => {
               props.onStartGame();
             }}>Start game
-          </button>
+          </Button>
         </div>
       )}
     </PlayersContext.Consumer>

@@ -4,6 +4,7 @@ import {Player} from '../types/Player';
 import {playerLevelToString} from '../types/PlayerLevel';
 import {PlayersContext} from '../contexts/PlayersContext';
 import Topics from '../types/Topics';
+import {Button, ButtonGroup} from '@material-ui/core';
 
 type MyProps = {
 };
@@ -83,9 +84,11 @@ class GroupModeQuestion extends React.Component<MyProps, MyState> {
         </span>
         <div className="theTopicList">
           <h3>Topics</h3>
-          {this.state.questions.getAvailableTopics(currentPlayer.level).map(topic_id => {
-            return (<button key={topic_id} onClick={(): void => this.chooseTopic(topic_id)}>{GroupModeQuestion.topicData.topicIdToTopicName(topic_id).name}</button>);
-          })}
+          <ButtonGroup variant="text" size="large" color="primary" aria-label="primary button group">
+            {this.state.questions.getAvailableTopics(currentPlayer.level).map(topic_id => {
+              return (<Button key={topic_id} onClick={(): void => this.chooseTopic(topic_id)}>{GroupModeQuestion.topicData.topicIdToTopicName(topic_id).name}</Button>);
+            })}
+          </ButtonGroup>
         </div>
       </div>
     )
@@ -105,21 +108,23 @@ class GroupModeQuestion extends React.Component<MyProps, MyState> {
         </span>
         <div className="questionEvaluate">
           <h3>Evaluate</h3>
-          <button onMouseEnter={(): void => this.setState({evaluateHint: '+1 at least you tried'})}
-            onClick={(): void => this.evaluateQuestion(1)}>1
-          </button>
-          <button onMouseEnter={(): void => this.setState({evaluateHint: '+2 you got the basic idea'})}
-            onClick={(): void => this.evaluateQuestion(2)}>2
-          </button>
-          <button onMouseEnter={(): void => this.setState({evaluateHint: '+3 its an OK answer'})}
-            onClick={(): void => this.evaluateQuestion(3)}>3
-          </button>
-          <button onMouseEnter={(): void => this.setState({evaluateHint: '+4 solid answer with good terminology'})}
-            onClick={(): void => this.evaluateQuestion(4)}>4
-          </button>
-          <button onMouseEnter={(): void => this.setState({evaluateHint: '+5 Perfect answer you could imagine'})}
-            onClick={(): void => this.evaluateQuestion(5)}>5
-          </button>
+          <ButtonGroup variant="text" size="large" color="primary" aria-label="primary button group">
+            <Button  onMouseEnter={(): void => this.setState({evaluateHint: '+1 at least you tried'})}
+              onClick={(): void => this.evaluateQuestion(1)}>1
+            </Button>
+            <Button  onMouseEnter={(): void => this.setState({evaluateHint: '+2 you got the basic idea'})}
+              onClick={(): void => this.evaluateQuestion(2)}>2
+            </Button>
+            <Button  onMouseEnter={(): void => this.setState({evaluateHint: '+3 its an OK answer'})}
+              onClick={(): void => this.evaluateQuestion(3)}>3
+            </Button>
+            <Button  onMouseEnter={(): void => this.setState({evaluateHint: '+4 solid answer with good terminology'})}
+              onClick={(): void => this.evaluateQuestion(4)}>4
+            </Button>
+            <Button  onMouseEnter={(): void => this.setState({evaluateHint: '+5 Perfect answer you could imagine'})}
+              onClick={(): void => this.evaluateQuestion(5)}>5
+            </Button>
+          </ButtonGroup>
           <div>{this.state.evaluateHint}</div>
         </div>
       </div>

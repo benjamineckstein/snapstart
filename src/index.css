@@ -35,13 +35,11 @@ code {
 .groupmode .question {
     grid-area: question;
     grid-gap: 10px;
-    grid-template-rows: 1fr 1fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr;
     display: grid;
 }
 
 .groupmode .question .btnStartGame{
-    font-size: 24px;
-    width: 80%;
     align-self: baseline;
     justify-self: center;
 }
@@ -76,13 +74,6 @@ code {
 .groupmode .question .theTopicList {
     text-align: center;
 }
-.groupmode .question .theTopicList button {
-    padding: 10px 20px;
-    font-size: 15px;
-    width: 33%;
-    height: 70px;
-    vertical-align: top;
-}
 
 .groupmode .question .theQuestion {
     text-align: center;
@@ -98,12 +89,6 @@ code {
 .groupmode .question .questionEvaluate {
     text-align: center;
 }
-.groupmode .question .questionEvaluate button {
-    padding: 10px 20px;
-    height: 70px;
-    font-size: 25px;
-}
-
 
 .groupmode .leaderboard {
     grid-area: leaderboard;
@@ -147,7 +132,7 @@ code {
     height: 100vh;
     display: grid;
     grid-gap: 20px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-template-rows: 1fr 2fr;
 }
 
@@ -156,19 +141,9 @@ code {
     align-self: end;
     justify-self: center;
 }
+.mainmenu div {
+    grid-column: 1/4;
+    align-self: start;
+    justify-self: center;
 
-.mainmenu a {
-    height: 110px;
-    line-height: 110px;
-    font-size: 25px;
-    width: 100%;
-    text-align: center;
-    text-decoration: none;
-    color: #000000;
-    background-color: #eeeeee;
-    border: 1px solid #000000;
-    display: block;
-}
-.mainmenu a:hover {
-    background-color: #dddddd;
 }

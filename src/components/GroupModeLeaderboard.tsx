@@ -31,7 +31,7 @@ class GroupModeLeaderboard extends React.Component<MyProps, MyState> {
       <div className={'leaderboard'}>
         <div className="playerList">
           {this.getSortedPlayers().map(player => {
-            return (<div onClick={(): void => {
+            return (<div key={player.id} onClick={(): void => {
               context.updatePlayers(context.players.removePlayer(player.id));
             }}><GroupModePlayer key={player.id} isSelected={false} player={player}/></div>);
           })}

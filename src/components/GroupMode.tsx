@@ -5,6 +5,7 @@ import {Players} from '../types/Players';
 import {PlayersContext, PlayersContextValue} from '../contexts/PlayersContext';
 import GroupModeStartGame from './GroupModeStartGame';
 import {Link} from 'react-router-dom';
+import {Button} from '@material-ui/core';
 
 type MyProps = {
 };
@@ -48,7 +49,7 @@ class GroupMode extends React.Component<MyProps, MyState> {
       <PlayersContext.Provider value={this.state.playersContextValue}>
         <div className={'groupmode'}>
           <div className={'header'}>
-            <Link to={'/'}>Back</Link>
+            <Button color="primary" component={Link} to="/">Back</Button>
           </div>
           <h1 style={{gridArea: 'questionHeader'}}>{this.state.hasGameStarted && 'Questions'}</h1>
           {!this.state.hasGameStarted && <GroupModeStartGame onStartGame={this.onStartGame}/>}
