@@ -8,8 +8,6 @@ import {MenuItem} from '@material-ui/core';
 
 
 type MyProps = {
-    hasGameStarted: boolean
-
 };
 type MyState = {
 
@@ -49,9 +47,6 @@ class GroupModeAddPlayer extends React.Component<MyProps, MyState> {
     }
 
     render(): JSX.Element {
-      if (this.props.hasGameStarted) {
-        return (<div/>);
-      }
       return (
         <div className="addPlayer">
           <form style={{display: 'grid', gridTemplateColumns: '4fr 2fr 1fr'}} onSubmit={this.handleSubmit}>

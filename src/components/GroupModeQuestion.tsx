@@ -1,10 +1,11 @@
 import React from 'react';
 import {Questions} from '../types/Questions';
 import {Player} from '../types/Player';
-import {playerLevelToString} from '../types/PlayerLevel';
 import {PlayersContext} from '../contexts/PlayersContext';
 import Topics from '../types/Topics';
-import {Button, ButtonGroup} from '@material-ui/core';
+import GroupModeQuestionCard from './GroupModeQuestionCard';
+import GroupModeTopicCard from './GroupModeTopicCard';
+import Container from '@material-ui/core/Container';
 
 type MyProps = {
 };
@@ -67,67 +68,25 @@ class GroupModeQuestion extends React.Component<MyProps, MyState> {
   }
 
   render(): JSX.Element {
-    return this.state.needToChoose ? this.renderChooseTopic() : this.renderChooseAnswer();
+    return (
+      <div className={'question'}>
+        <Container maxWidth="sm">
+          {this.state.needToChoose ? this.renderChooseTopic() : this.renderChooseAnswer()}
+        </Container>
+      </div>
+    )
   }
 
   renderChooseTopic(): JSX.Element {
     let currentPlayer = this.context.players.getSelectedPlayer();
     return (
-      <div className={'question'}>
-        <div className="thePlayer">
-          <span className="thePlayerName">{currentPlayer.name}</span>
-          <span className="thePlayerLevel">{playerLevelToString(currentPlayer.level)}</span>
-        </div>
-        <span className="theTopicChoosing">
-          Please choose a topic
-          <span>{this.state.questions.getRemainingQuestions()} questions remaining.</span>
-        </span>
-        <div className="theTopicList">
-          <h3>Topics</h3>
-          <ButtonGroup variant="text" size="large" color="primary" aria-label="primary button group">
-            {this.state.questions.getAvailableTopics(currentPlayer.level).map(topic_id => {
-              return (<Button key={topic_id} onClick={(): void => this.chooseTopic(topic_id)}>{GroupModeQuestion.topicData.topicIdToTopicName(topic_id).name}</Button>);
-            })}
-          </ButtonGroup>
-        </div>
-      </div>
+      <GroupModeTopicCard player={currentPlayer} questions={this.state.questions} onChooseTopic={this.chooseTopic}/>
     )
   }
   renderChooseAnswer(): JSX.Element {
     let currentPlayer = this.context.players.getSelectedPlayer();
     return (
-      <div className={'question'}>
-        <div className="thePlayer">
-          <span className="thePlayerName">{currentPlayer.name}</span>
-          <span className="thePlayerLevel">{playerLevelToString(currentPlayer.level)}</span>
-        </div>
-        <span className="theQuestion">
-          {this.state.questions.selectedQuestion.question}
-          <span>Topic: {GroupModeQuestion.topicData.topicIdToTopicName(this.state.questions.selectedQuestion.topic_id).name}</span>
-          <span>Level: {playerLevelToString(this.state.questions.selectedQuestion.level_id)}</span>
-        </span>
-        <div className="questionEvaluate">
-          <h3>Evaluate</h3>
-          <ButtonGroup variant="text" size="large" color="primary" aria-label="primary button group">
-            <Button  onMouseEnter={(): void => this.setState({evaluateHint: '+1 at least you tried'})}
-              onClick={(): void => this.evaluateQuestion(1)}>1
-            </Button>
-            <Button  onMouseEnter={(): void => this.setState({evaluateHint: '+2 you got the basic idea'})}
-              onClick={(): void => this.evaluateQuestion(2)}>2
-            </Button>
-            <Button  onMouseEnter={(): void => this.setState({evaluateHint: '+3 its an OK answer'})}
-              onClick={(): void => this.evaluateQuestion(3)}>3
-            </Button>
-            <Button  onMouseEnter={(): void => this.setState({evaluateHint: '+4 solid answer with good terminology'})}
-              onClick={(): void => this.evaluateQuestion(4)}>4
-            </Button>
-            <Button  onMouseEnter={(): void => this.setState({evaluateHint: '+5 Perfect answer you could imagine'})}
-              onClick={(): void => this.evaluateQuestion(5)}>5
-            </Button>
-          </ButtonGroup>
-          <div>{this.state.evaluateHint}</div>
-        </div>
-      </div>
+      <GroupModeQuestionCard player={currentPlayer} question={this.state.questions.selectedQuestion} onEvaluate={this.evaluateQuestion}/>
     )
   }
 

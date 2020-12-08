@@ -45,20 +45,29 @@ class GroupMode extends React.Component<MyProps, MyState> {
 
   render(): JSX.Element {
     console.log('Render GroupMode');
+    return this.state.hasGameStarted? this.renderStartedGame():this.renderPrepareGame();
+  }
+  renderStartedGame(): JSX.Element {
     return (
       <PlayersContext.Provider value={this.state.playersContextValue}>
         <div className={'groupmode'}>
           <div className={'header'}>
             <Button color="primary" component={Link} to="/">Back</Button>
           </div>
-          <h1 style={{gridArea: 'questionHeader'}}>{this.state.hasGameStarted && 'Questions'}</h1>
-          {!this.state.hasGameStarted && <GroupModeStartGame onStartGame={this.onStartGame}/>}
-          {this.state.hasGameStarted && <GroupModeQuestion/>}
-          <h1 style={{gridArea: 'leaderboardHeader'}}>
-            {!this.state.hasGameStarted && 'Players'}
-            {this.state.hasGameStarted && 'Leaderboard'}
-          </h1>
-          <GroupModeLeaderboard hasGameStarted={this.state.hasGameStarted}/>
+          <GroupModeQuestion/>
+          <GroupModeLeaderboard/>
+        </div>
+      </PlayersContext.Provider>
+    );
+  }
+  renderPrepareGame(): JSX.Element {
+    return (
+      <PlayersContext.Provider value={this.state.playersContextValue}>
+        <div className={'groupmode_preparation'}>
+          <div className={'header'}>
+            <Button color="primary" component={Link} to="/">Back</Button>
+          </div>
+          <GroupModeStartGame onStartGame={this.onStartGame}/>
         </div>
       </PlayersContext.Provider>
     );

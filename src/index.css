@@ -23,108 +23,42 @@ code {
     display: grid;
     grid-row-gap: 10px;
     grid-column-gap: 30px;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: min-content 50px 1fr;
-    grid-template-areas: "header header" "questionHeader leaderboardHeader" "question leaderboard";
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content 1fr;
+    grid-template-areas: "header" "leaderboard" "question";
+}
+.groupmode_preparation {
+    margin: auto;
+    max-width: 600px;
+    height: 100vh;
+    display: grid;
+    grid-row-gap: 10px;
+    grid-column-gap: 30px;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content 1fr 5fr 1fr 10fr;
+    grid-template-areas: "header" "welcome" "startgame" "addplayer" "listplayers";
 }
 
+.groupmode_preparation .header ,
 .groupmode .header {
     grid-area: header;
 }
 
 .groupmode .question {
     grid-area: question;
-    grid-gap: 10px;
-    grid-template-rows: 1fr 1fr 1fr;
-    display: grid;
-}
-
-.groupmode .question .btnStartGame{
-    align-self: baseline;
+    align-self: start;
     justify-self: center;
 }
 
-.groupmode .question .thePlayer {
-    font-size: 25px;
-    justify-self: center;
+.btnStartGame{
     align-self: center;
-}
-
-.groupmode .question .thePlayer .thePlayerName{
-}
-
-.groupmode .question .thePlayer .thePlayerLevel{
-    display: block;
-    text-align: center;
-    font-size: 60%;
-    color: #777;
-}
-
-
-
-.groupmode .question .theTopicChoosing {
-    text-align: center;
-    display: block;
-    font-size: 25px;
-}
-.groupmode .question .theTopicChoosing span{
-    font-size: 60%;
-    display: block;
-}
-.groupmode .question .theTopicList {
-    text-align: center;
-}
-
-.groupmode .question .theQuestion {
-    text-align: center;
-    display: block;
-    font-size: 25px;
-}
-.groupmode .question .theQuestion span {
-    display: block;
-    font-size: 60%;
-    color: #777;
-}
-
-.groupmode .question .questionEvaluate {
-    text-align: center;
+    justify-self: center;
 }
 
 .groupmode .leaderboard {
     grid-area: leaderboard;
-    min-width: 200px;
-
-    grid-gap: 10px;
-    grid-template-rows: 2fr 1fr;
-    display: grid;
-}
-
-.groupmode .leaderboard .leaderboardList,
-.groupmode .leaderboard .playerList
-{
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat( auto-fill, 20px);
-    grid-row-gap: 3px;
-}
-
-.groupmode .leaderboard .leaderboardList .playerListItem,
-.groupmode .leaderboard .playerList .playerListItem {
-
-    border-bottom: 1px dotted #777777;
-    display: grid;
-    grid-gap: 3px;
-    grid-template-columns: 2fr 1fr 30px;
-}
-
-.groupmode .leaderboard .playerList .playerListItem:hover{
-    cursor: pointer;
-    background-color: #eeeeee;
-}
-
-.groupmode .leaderboard .leaderboardList .playerListItemSelected {
-    background-color: #e6ffe4;
-    font-weight: bold;
+    align-self: center;
+    justify-self: center;
 }
 
 .mainmenu {

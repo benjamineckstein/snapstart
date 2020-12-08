@@ -1,12 +1,15 @@
 import React from 'react';
-import GroupModePlayer from './GroupModePlayer';
-import GroupModeAddPlayer from './GroupModeAddPlayer';
 import {Player} from '../types/Player';
 import {PlayersContext} from '../contexts/PlayersContext';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import ListItemText from '@material-ui/core/ListItemText';
+import {playerLevelToString} from '../types/PlayerLevel';
+import List from '@material-ui/core/List';
+import {Container} from '@material-ui/core';
 
 type MyProps = {
-  hasGameStarted: boolean,
-
 };
 type MyState = {};
 
@@ -23,33 +26,25 @@ class GroupModeLeaderboard extends React.Component<MyProps, MyState> {
   }
 
   render(): JSX.Element {
-    return this.props.hasGameStarted ? this.renderLeaderBoard(): this.renderPlayers();
-  }
-  renderPlayers(): JSX.Element {
-    let context = this.context;
-    return (
-      <div className={'leaderboard'}>
-        <div className="playerList">
-          {this.getSortedPlayers().map(player => {
-            return (<div key={player.id} onClick={(): void => {
-              context.updatePlayers(context.players.removePlayer(player.id));
-            }}><GroupModePlayer key={player.id} isSelected={false} player={player}/></div>);
-          })}
-        </div>
-        <GroupModeAddPlayer hasGameStarted={this.props.hasGameStarted}/>
-      </div>
-    );
-  }
-  renderLeaderBoard(): JSX.Element {
     let currentPlayerId = this.context.players.getSelectedPlayer().id;
     return (
       <div className={'leaderboard'}>
-        <div className="leaderboardList">
-          {this.getSortedPlayers().map(player => {
-            return (<GroupModePlayer key={player.id} isSelected={player.id === currentPlayerId} player={player}/>);
-          })}
-        </div>
-        <GroupModeAddPlayer hasGameStarted={this.props.hasGameStarted}/>
+        <Container maxWidth="xs">
+          <List dense={true}>
+            {this.getSortedPlayers().map(player => {
+              return (
+                <ListItem key={player.id} selected={false && player.id === currentPlayerId}>
+                  <ListItemAvatar>
+                    <Avatar>{player.name.slice(0, 2)}</Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={player.name} secondary={playerLevelToString(player.level) + ' - ' + player.points +  ' points'} />
+                </ListItem>);
+
+              //              <GroupModePlayer key={player.id} isSelected={player.id === currentPlayerId} player={player}/>);
+            })}
+          </List>
+          <div/>
+        </Container>
       </div>
     );
   }

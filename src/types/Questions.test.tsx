@@ -29,7 +29,7 @@ it('check remaining questions', () => {
 
 it('check getAvailableTopics', () => {
   const questions = new Questions(questions_data);
-  expect(questions.getAvailableTopics()).toStrictEqual([1,2]);
+  expect(questions.getAvailableTopics(0)).toStrictEqual([1,2]);
 });
 
 
